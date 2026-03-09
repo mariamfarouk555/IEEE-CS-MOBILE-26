@@ -28,11 +28,10 @@ class _BmiScreenState extends State<BmiScreen> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              ///Gender
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  GestureDetector(   // GestureDetector or InkWell
+                  GestureDetector(  
                     onTap: (){
                       setState(() {
                         isClick=true;
@@ -44,7 +43,6 @@ class _BmiScreenState extends State<BmiScreen> {
                           borderRadius: BorderRadius.circular(20)),
                       width: 170,
                       height: 170,
-                      //color: HexColor('#252a48'), in decoration
                       child: Center(
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -77,7 +75,6 @@ class _BmiScreenState extends State<BmiScreen> {
                           borderRadius: BorderRadius.circular(20)),
                       width: 170,
                       height: 170,
-                      //color: HexColor('#252a48'), in decoration
                       child: Center(
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -92,7 +89,6 @@ class _BmiScreenState extends State<BmiScreen> {
                                 color: Colors.white,
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold),)
-
                           ],
                         ),
                       ),
@@ -101,7 +97,6 @@ class _BmiScreenState extends State<BmiScreen> {
                 ],
               ),
               const SizedBox(height: 20),
-              ///Height & Slider
               Container(
                 decoration: BoxDecoration(
                     color: HexColor('#252a48'),
@@ -122,7 +117,7 @@ class _BmiScreenState extends State<BmiScreen> {
                           fontWeight: FontWeight.bold),),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.baseline,// instead of RichText and TextSpan
+                        crossAxisAlignment: CrossAxisAlignment.baseline,
                         textBaseline:TextBaseline.alphabetic ,
                         children: [
                           Text('${height.toInt()}',style: TextStyle(
@@ -152,7 +147,6 @@ class _BmiScreenState extends State<BmiScreen> {
                 ),
               ),
               const SizedBox(height: 20),
-              /// Weight & Age
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -163,7 +157,6 @@ class _BmiScreenState extends State<BmiScreen> {
                         borderRadius: BorderRadius.circular(20)),
                     width: 170,
                     height: 200,
-                    //color: HexColor('#252a48'), in decoration
                     child: Center(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -213,7 +206,6 @@ class _BmiScreenState extends State<BmiScreen> {
                         borderRadius: BorderRadius.circular(20)),
                     width: 170,
                     height: 200,
-                    //color: HexColor('#252a48'), in decoration
                     child: Center(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -269,11 +261,11 @@ class _BmiScreenState extends State<BmiScreen> {
                 child: MaterialButton(onPressed: (){
                   double result = weight / pow(height/100,2);
                   Navigator.push(context, MaterialPageRoute(
-                      builder: (context)   ///(context) =>BmiResultScreen()
+                      builder: (context)   
                       {return BmiResultScreen(gender: isClick ? 'Male':'Female',
                         result: result.toInt(),
                         age: age.toInt(),
-                      );}));  /// Go to another Screen
+                      );})); 
                 },child: Text("Check Your BMI",
                   style: TextStyle(
                       color: Colors.white,
