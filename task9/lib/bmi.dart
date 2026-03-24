@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'bmi_output.dart';
 
-class BmiScreen extends StatefulWidget{
+class BmiScreen extends StatefulWidget {
   const BmiScreen({super.key});
 
   @override
@@ -11,280 +11,369 @@ class BmiScreen extends StatefulWidget{
 }
 
 class _BmiScreenState extends State<BmiScreen> {
-  double height =150;
-  double weight =90;
-  double age =23;
-  bool isClick = true;
+  double height = 150;
+  double weight = 90;
+  double age = 23;
+  bool isMale = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: HexColor("#0d1232"),
+      backgroundColor: HexColor("#f4f7fc"),
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        title: Text("Bmi Calculator",style: TextStyle(color: Colors.white,fontSize: 25,fontWeight: FontWeight.bold),),
+        backgroundColor: HexColor("#f4f7fc"),
+        elevation: 0,
+        title: Text(
+          "BMI Calculator",
+          style: TextStyle(
+            color: HexColor("#1f2a38"),
+            fontSize: 26,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        centerTitle: true,
+        iconTheme: IconThemeData(color: HexColor("#1f2a38")),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: SingleChildScrollView(
           child: Column(
             children: [
-              ///Gender
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  GestureDetector(   // GestureDetector or InkWell
-                    onTap: (){
+                  GestureDetector(
+                    onTap: () {
                       setState(() {
-                        isClick=true;
+                        isMale = true;
                       });
                     },
                     child: Container(
                       decoration: BoxDecoration(
-                          color: isClick?Colors.blue : HexColor('#252a48'),
-                          borderRadius: BorderRadius.circular(20)),
+                        color: isMale ? HexColor("#a0d2eb") : Colors.white,
+                        borderRadius: BorderRadius.circular(25),
+                        boxShadow: [
+                          BoxShadow(
+                              color: Colors.grey.withOpacity(0.3),
+                              blurRadius: 8,
+                              offset: Offset(0, 4))
+                        ],
+                      ),
                       width: 170,
                       height: 170,
-                      //color: HexColor('#252a48'), in decoration
                       child: Center(
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Image.asset("assets/male-gender.png",
+                            Image.asset(
+                              "assets/male.png",
                               height: 80,
                               width: 80,
-                              color: Colors.white,
                             ),
-                            SizedBox(height:10),
-                            Text('Male',style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),)
-
+                            SizedBox(height: 12),
+                            Text(
+                              'Male',
+                              style: TextStyle(
+                                color: HexColor("#1f2a38"),
+                                fontSize: 22,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                           ],
                         ),
                       ),
                     ),
                   ),
                   GestureDetector(
-                    onTap: (){
+                    onTap: () {
                       setState(() {
-                        isClick=false;
+                        isMale = false;
                       });
                     },
                     child: Container(
                       decoration: BoxDecoration(
-                          color: !isClick?Colors.blue : HexColor('#252a48'),
-                          borderRadius: BorderRadius.circular(20)),
+                        color: !isMale ? HexColor("#f8a1c1") : Colors.white,
+                        borderRadius: BorderRadius.circular(25),
+                        boxShadow: [
+                          BoxShadow(
+                              color: Colors.grey.withOpacity(0.3),
+                              blurRadius: 8,
+                              offset: Offset(0, 4))
+                        ],
+                      ),
                       width: 170,
                       height: 170,
-                      //color: HexColor('#252a48'), in decoration
                       child: Center(
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Image.asset("assets/femenine.png",
+                            Image.asset(
+                              "assets/female.png",
                               height: 80,
                               width: 80,
-                              color: Colors.white,
                             ),
-                            SizedBox(height:10),
-                            Text('Female',style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),)
-
+                            SizedBox(height: 12),
+                            Text(
+                              'Female',
+                              style: TextStyle(
+                                color: HexColor("#1f2a38"),
+                                fontSize: 22,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                           ],
                         ),
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
-              const SizedBox(height: 20),
-              ///Height & Slider
+              SizedBox(height: 25),
               Container(
                 decoration: BoxDecoration(
-                    color: HexColor('#252a48'),
-                    borderRadius: BorderRadius.circular(20)),
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(25),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.grey.withOpacity(0.2),
+                        blurRadius: 10,
+                        offset: Offset(0, 5))
+                  ],
+                ),
                 width: double.infinity,
                 height: 220,
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 30,
-                    horizontal: 10,
-                  ),
+                  padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 10),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('Height',style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold),),
+                      Text(
+                        'Height',
+                        style: TextStyle(
+                          color: HexColor("#1f2a38"),
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.baseline,// instead of RichText and TextSpan
-                        textBaseline:TextBaseline.alphabetic ,
+                        crossAxisAlignment: CrossAxisAlignment.baseline,
+                        textBaseline: TextBaseline.alphabetic,
                         children: [
-                          Text('${height.toInt()}',style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 40,
-                              fontWeight: FontWeight.bold),),
-                          SizedBox(width: 10,),
-                          Text('CM',
+                          Text(
+                            '${height.toInt()}',
                             style: TextStyle(
-                              color: Colors.white,
+                              color: HexColor("#1f2a38"),
+                              fontSize: 42,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(width: 8),
+                          Text(
+                            'CM',
+                            style: TextStyle(
+                              color: Colors.grey,
                               fontSize: 16,
-                            ),)
+                            ),
+                          ),
                         ],
                       ),
                       Slider(
-                          value: height,
-                          min: 60,
-                          max: 220,
-                          activeColor: Colors.red,
-                          onChanged: (val){
-                            setState(() {
-                              height = val;
-                            });
-                          })
+                        value: height,
+                        min: 60,
+                        max: 220,
+                        activeColor: HexColor("#a0d2eb"),
+                        inactiveColor: Colors.grey.withOpacity(0.3),
+                        onChanged: (val) {
+                          setState(() {
+                            height = val;
+                          });
+                        },
+                      ),
                     ],
                   ),
                 ),
               ),
-              const SizedBox(height: 20),
-              /// Weight & Age
+              SizedBox(height: 25),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
                     padding: EdgeInsets.all(20),
                     decoration: BoxDecoration(
-                        color: HexColor('#252a48'),
-                        borderRadius: BorderRadius.circular(20)),
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(25),
+                      boxShadow: [
+                        BoxShadow(
+                            color: Colors.grey.withOpacity(0.2),
+                            blurRadius: 10,
+                            offset: Offset(0, 5))
+                      ],
+                    ),
                     width: 170,
                     height: 200,
-                    //color: HexColor('#252a48'), in decoration
-                    child: Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text('Weight',style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold),),
-                          Text('${weight.toInt()}',style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 30,
-                              fontWeight: FontWeight.bold),),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              CircleAvatar(
-                                backgroundColor:HexColor('#0d1232'),
-                                child: IconButton(onPressed: (){
-                                  weight++;
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Weight',
+                          style: TextStyle(
+                            color: HexColor("#1f2a38"),
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          '${weight.toInt()}',
+                          style: TextStyle(
+                            color: HexColor("#1f2a38"),
+                            fontSize: 32,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            CircleAvatar(
+                              backgroundColor: HexColor("#f4f7fc"),
+                              child: IconButton(
+                                onPressed: () {
                                   setState(() {
+                                    weight++;
                                   });
                                 },
-                                  icon: Icon(Icons.add),
-                                  color: Colors.white,),
+                                icon: Icon(Icons.add),
+                                color: HexColor("#a0d2eb"),
                               ),
-                              CircleAvatar(
-                                backgroundColor:HexColor('#0d1232'),
-                                child: IconButton(onPressed: (){
-                                  weight--;
+                            ),
+                            CircleAvatar(
+                              backgroundColor: HexColor("#f4f7fc"),
+                              child: IconButton(
+                                onPressed: () {
                                   setState(() {
+                                    weight--;
                                   });
                                 },
-                                  icon: Icon(Icons.remove),
-                                  color: Colors.white,
-                                ),
-                              )
-                            ],
-                          )
-                        ],
-                      ),
+                                icon: Icon(Icons.remove),
+                                color: HexColor("#a0d2eb"),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
                   ),
                   Container(
                     padding: EdgeInsets.all(20),
                     decoration: BoxDecoration(
-                        color: HexColor('#252a48'),
-                        borderRadius: BorderRadius.circular(20)),
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(25),
+                      boxShadow: [
+                        BoxShadow(
+                            color: Colors.grey.withOpacity(0.2),
+                            blurRadius: 10,
+                            offset: Offset(0, 5))
+                      ],
+                    ),
                     width: 170,
                     height: 200,
-                    //color: HexColor('#252a48'), in decoration
-                    child: Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text('Age',style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold),),
-                          Text('${age.toInt()}',style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 30,
-                              fontWeight: FontWeight.bold),),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              CircleAvatar(
-                                backgroundColor:HexColor('#0d1232'),
-                                child: IconButton(onPressed: (){
-                                  age++;
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Age',
+                          style: TextStyle(
+                            color: HexColor("#1f2a38"),
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          '${age.toInt()}',
+                          style: TextStyle(
+                            color: HexColor("#1f2a38"),
+                            fontSize: 32,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            CircleAvatar(
+                              backgroundColor: HexColor("#f4f7fc"),
+                              child: IconButton(
+                                onPressed: () {
                                   setState(() {
+                                    age++;
                                   });
                                 },
-                                  icon: Icon(Icons.add),
-                                  color: Colors.white,),
+                                icon: Icon(Icons.add),
+                                color: HexColor("#f8a1c1"),
                               ),
-                              CircleAvatar(
-                                backgroundColor:HexColor('#0d1232'),
-                                child: IconButton(onPressed: (){
-                                  age--;
+                            ),
+                            CircleAvatar(
+                              backgroundColor: HexColor("#f4f7fc"),
+                              child: IconButton(
+                                onPressed: () {
                                   setState(() {
+                                    age--;
                                   });
                                 },
-                                  icon: Icon(Icons.remove),
-                                  color: Colors.white,),
-                              )
-                            ],
-                          )
-                        ],
-                      ),
+                                icon: Icon(Icons.remove),
+                                color: HexColor("#f8a1c1"),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
-                  )
-
+                  ),
                 ],
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: 25),
               Container(
                 width: double.infinity,
                 height: 70,
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Colors.red
+                  borderRadius: BorderRadius.circular(25),
+                  gradient: LinearGradient(
+                    colors: [HexColor("#f8a1c1"), HexColor("#f48fb1")],
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.grey.withOpacity(0.3),
+                        blurRadius: 10,
+                        offset: Offset(0, 5))
+                  ],
                 ),
-                child: MaterialButton(onPressed: (){
-                  double result = weight / pow(height/100,2);
-                  Navigator.push(context, MaterialPageRoute(
-                      builder: (context)   ///(context) =>BmiResultScreen()
-                      {return BmiResultScreen(gender: isClick ? 'Male':'Female',
-                        result: result.toInt(),
-                        age: age.toInt(),
-                      );}));  /// Go to another Screen
-                },child: Text("Check Your BMI",
-                  style: TextStyle(
+                child: MaterialButton(
+                  onPressed: () {
+                    double result = weight / pow(height / 100, 2);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => BmiResultScreen(
+                          gender: isMale ? 'Male' : 'Female',
+                          result: result.toInt(),
+                          age: age.toInt(),
+                        ),
+                      ),
+                    );
+                  },
+                  child: Text(
+                    "Check Your BMI",
+                    style: TextStyle(
                       color: Colors.white,
                       fontSize: 25,
-                      fontWeight: FontWeight.bold),),),
-              )
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         ),
       ),
     );
-
   }
 }
